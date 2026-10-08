@@ -1,77 +1,134 @@
 # Titan Tycoon (nombre provisional)
 
-Tycoon de defensa contra titanes con gancho de maniobras como movimiento central.
-Subes de nivel matando jefes, sacas compañeros por rareza en una rueda, hay
-eventos especiales y una aldea que defender.
+**Tycoon de defensa contra titanes para Roblox, con el gancho de maniobras como movimiento central.**
 
-## Estado — Fase 3 (tycoon + UI)
+Defiendes tu aldea de oleadas de titanes, subes de nivel matando jefes, sacas
+compañeros por rareza en una rueda, enfrentas eventos especiales y haces rebirth
+para volver más fuerte. Escrito en Luau y sincronizado con Roblox Studio vía Rojo.
 
-- ✅ Proyecto Rojo + estructura cliente/servidor/compartido
-- ✅ Mapa greybox generado por código (muralla, 12 torres, zona de aldea)
-- ✅ Gancho doble con física de resorte (Q/E), recogida de cable y gas
-- ✅ Datos de jugador con DataStore (perfil ya preparado para fases futuras)
-- ✅ Config central con rarezas, rueda, eventos y aldea ya definidos
-- ✅ Titanes con IA (Normal / Anormal / Jefe) que persiguen jugadores o la aldea
-- ✅ Oleadas progresivas + Jefe cada 5 oleadas
-- ✅ Combate: click = corte, la **nuca hace x8** (parte roja atrás del cuello)
-- ✅ Recompensas: monedas + esencia; nivel sube matando jefes
-- ✅ Aldeas por jugador (6 parcelas): edificios que producen monedas/esencia
-- ✅ Muro de aldea con vida: los titanes lo atacan; roto = producción parada
-- ✅ HUD (monedas, esencia, nivel, oleadas) + panel de aldea (tecla **B**)
-- ✅ Rueda gacha (tecla **R**): 6 rarezas, pity a 50, inventario de compañeros
-- ✅ Compañeros equipables (máx 3) que orbitan al jugador y atacan titanes
-- ✅ Texturas IA generadas (assets/textures/) + sistema para aplicarlas
-- ✅ Pipeline Blender→Roblox (blender/export_roblox.py)
-- ✅ Eventos especiales: Invasión Anormal (x2) · Titán Colosal (x5) · **Luna de Sangre** (x10, cielo rojo)
-- ✅ Rebirth: reinicia nivel/monedas/aldea a cambio de +25% recompensas permanente por rebirth
-- ✅ Leaderboard global (entre servidores) con tablero físico en la plaza
-- ⬜ Subir texturas a Roblox y pegar IDs en src/shared/AssetIds.luau ← **TU TURNO**
-- ⬜ Animaciones reales (subir y pegar IDs en Config.Animations)
-- ⬜ Titán jefe 3D (Higgsfield generate_3d → Blender → Studio)
+![Roblox](https://img.shields.io/badge/Roblox-Studio-000000?style=for-the-badge&logo=roblox&logoColor=white)
+![Luau](https://img.shields.io/badge/Luau-typed-00A2FF?style=for-the-badge&logo=lua&logoColor=white)
+![Rojo](https://img.shields.io/badge/Rojo-7.4.4-E13835?style=for-the-badge)
+![Aftman](https://img.shields.io/badge/Aftman-toolchain-555555?style=for-the-badge)
+![Blender](https://img.shields.io/badge/Blender-export-F5792A?style=for-the-badge&logo=blender&logoColor=white)
 
-## Subir las texturas (5 minutos, lo haces tú)
+> Juego en desarrollo, inspirado en el estilo de *Attack on Titan*. No oficial.
 
-1. Abre Studio → pestaña **View** → **Asset Manager**
-2. Botón **Bulk Import** → selecciona los 4 PNG de `assets/textures/`
-3. Espera la moderación (1-2 min) → click derecho en cada una → **Copy Asset ID**
-4. Pega los 4 números en `src/shared/AssetIds.luau`
-5. Con eso el mapa, las aldeas y los titanes quedan texturizados automáticamente
+---
 
-## Cómo correrlo
+## Mecánicas
 
-1. Instalar [Aftman](https://github.com/LPGhatguy/aftman): `winget install LPGhatguy.Aftman`
-2. En esta carpeta: `aftman install` (instala Rojo)
-3. `rojo serve`
-4. En Roblox Studio: instalar el plugin de Rojo (Creator Store), abrir un
-   Baseplate vacío y darle **Connect** en el plugin
-5. Play (F5)
+- **Gancho doble con física de resorte** (izquierdo y derecho), recogida de cable y gas.
+- **Titanes con IA**: Normal, Anormal y Jefe; persiguen a los jugadores o atacan la aldea.
+- **Oleadas progresivas** con un **jefe cada 5 oleadas**.
+- **Combate**: click = corte; la **nuca hace x8** (la parte roja detrás del cuello).
+- **Recompensas** en monedas y esencia; el nivel sube matando jefes.
+- **Aldea por jugador** (6 parcelas) con edificios que producen monedas/esencia y
+  un muro con vida: si los titanes lo rompen, la producción se detiene.
+- **Rueda gacha**: 6 rarezas, pity a las 50 tiradas, inventario de compañeros.
+- **Compañeros equipables** (máx. 3) que orbitan al jugador y atacan titanes.
+- **Eventos especiales**: Invasión Anormal (x2), Titán Colosal (x5) y Luna de
+  Sangre (x10, cielo rojo).
+- **Rebirth**: reinicia nivel, monedas y aldea a cambio de +25 % de recompensas
+  permanentes por cada rebirth.
+- **Leaderboard global** entre servidores, con tablero físico en la plaza.
+- **Datos persistentes** con DataStore.
+- **Mapa greybox generado por código**: muralla, 12 torres y zona de aldeas.
 
 ## Controles
 
 | Tecla | Acción |
 |---|---|
-| **Q** | Disparar/soltar gancho izquierdo (toggle — **te jala solo**) |
-| **E** | Disparar/soltar gancho derecho |
-| **Shift** | **GAS**: acelera hacia la cámara y recoge el cable x1.7 |
-| **Espacio** | Soltar ambos ganchos (sales volando con el impulso) |
-| **WASD** | Control aéreo mientras cuelgas |
-| **Click izq.** | Corte de espada (apunta a la **nuca** para daño x8) |
-| **B** | Panel de aldea · **R** Rueda · **H** ayuda de controles |
+| `Q` | disparar / soltar gancho izquierdo (te jala solo) |
+| `E` | disparar / soltar gancho derecho |
+| `Shift` | **gas**: acelera hacia la cámara y recoge cable más rápido |
+| `Espacio` | soltar ambos ganchos (sales volando con el impulso) |
+| `W A S D` | control aéreo mientras cuelgas |
+| **Click izq.** | corte de espada (apunta a la nuca: x8) |
+| `B` | panel de aldea |
+| `R` | rueda de compañeros |
+| `H` | ayuda de controles |
 
-El flujo del anime: gancho a algo alto (Q), Shift para llegar volando,
-Espacio para soltarte con el impulso, gancho al titán, corte a la nuca.
+El flujo: gancho a algo alto (`Q`), `Shift` para llegar volando, `Espacio` para
+soltarte con el impulso, gancho al titán y corte a la nuca.
+
+## Stack
+
+- **Luau** con tipos (`globalTypes.d.luau`, `luau-lsp`).
+- **Rojo 7.4.4** para sincronizar el código con Studio (`default.project.json`).
+- **Aftman** para fijar versiones de herramientas (`aftman.toml`).
+- **Blender**: script de exportación a Roblox (`blender/export_roblox.py`).
+- Texturas PBR (adoquín, madera, pasto, piedra) generadas con herramientas de IA
+  y aplicadas por `TextureService`.
 
 ## Estructura
 
 ```
-src/
-  shared/    Config (todo el diseño del juego) + Remotes
-  server/    init + Services (Map, Data)
-  client/    init + Controllers (Grapple, Animation)
+titan-tycoon/
+├── aftman.toml             rojo + luau-lsp
+├── default.project.json    mapeo Rojo -> DataModel
+├── globalTypes.d.luau
+├── blender/export_roblox.py
+├── assets/textures/        PNG y sets PBR (color, normal, roughness, ao...)
+└── src/
+    ├── shared/
+    │   ├── Config.luau     todo el diseño del juego (gancho, titanes, rueda, aldea, rebirth...)
+    │   ├── AssetIds.luau   IDs de texturas subidas a Roblox
+    │   └── Remotes.luau
+    ├── server/
+    │   ├── init.server.luau
+    │   └── Services/       Combat, Companion, Data, Event, Leaderboard, Map,
+    │                       Rebirth, Texture, Titan, Village, Weapon
+    └── client/
+        ├── init.client.luau
+        └── Controllers/    Animation, Combat, Grapple, UI, Wheel
 ```
+
+## Cómo correrlo
+
+1. Instala [Aftman](https://github.com/LPGhatguy/aftman) (`winget install LPGhatguy.Aftman`).
+2. En la carpeta del proyecto:
+
+   ```bash
+   aftman install   # instala Rojo y luau-lsp
+   rojo serve       # sincronización en vivo con Studio
+   ```
+
+3. En Roblox Studio instala el plugin de Rojo (Creator Store), abre un Baseplate
+   vacío y dale **Connect**.
+4. Play (`F5`).
+
+Para generar un archivo de lugar en vez de sincronizar en vivo:
+
+```bash
+rojo build -o build.rbxlx
+```
+
+## Texturas en Roblox
+
+Las texturas de `assets/textures/` hay que subirlas a Roblox una vez:
+
+1. Studio → **View** → **Asset Manager** → **Bulk Import** con los PNG.
+2. Tras la moderación, click derecho → **Copy Asset ID**.
+3. Pega los IDs en `src/shared/AssetIds.luau`; el mapa, las aldeas y los titanes
+   quedan texturizados automáticamente.
 
 ## Ajustar el "feel" del gancho
 
-Todo está en `src/shared/Config.luau` → `Config.Grapple`:
-Stiffness (fuerza del tirón), Damping (rebote), ReelSpeed, GasForce.
-Cambia valores con `rojo serve` activo y se actualizan en vivo.
+Todo está en `src/shared/Config.luau` → `Config.Grapple`: `Stiffness` (fuerza
+del tirón), `Damping` (rebote), `ReelSpeed`, `GasForce`. Con `rojo serve`
+activo los cambios se aplican en vivo.
+
+## Pendiente
+
+- Subir texturas y pegar sus IDs en `AssetIds.luau`.
+- Animaciones reales (IDs en `Config.Animations`).
+- Modelo 3D del titán jefe (pipeline Blender → Studio).
+
+## Autor
+
+**David Burgos**, desarrollador full-stack + IA, Medellín.
+
+- Portafolio: https://davidburgos.dev
+- GitHub: https://github.com/burgosdavid057-art
+- LinkedIn: https://www.linkedin.com/in/david-burgos-ab673433a/
