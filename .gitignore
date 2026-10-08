@@ -1,0 +1,23 @@
+# Builds locales de Roblox
+*.rbxl
+*.rbxlx
+*.rbxm
+*.rbxmx
+sourcemap.json
+
+# Blender
+*.blend1
+*.blend2
+
+# --- seguridad (agregado al publicar) ---
+CLAUDE.md
+.claude/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+__pycache__/
+node_modules/
+Thumbs.db
+.DS_Store

@@ -1,0 +1,15 @@
+=== assets\textures\madera_pbr ===
+  color         1024x1024 RGB   color.png   [reescalado 2048x2048 -> 1024x1024]
+  normal        1024x1024 RGB   normal.png   [reescalado 2048x2048 -> 1024x1024]
+  roughness     1024x1024 I;16  roughness.png   [reescalado 2048x2048 -> 1024x1024]
+  ao            1024x1024 L     ao.png   [reescalado 2048x2048 -> 1024x1024]
+  displacement  1024x1024 I;16  displacement.png   [reescalado 2048x2048 -> 1024x1024]
+  tileado: horiz 0.73x  vert 1.03x  -> OK
+  contraste de luminancia: sigma=31.3
+
+  Sin problemas mecánicos.
+
+  AHORA ABRE ESTOS ARCHIVOS Y MÍRALOS:
+    assets\textures\madera_pbr\qa\contact_sheet.png   (¿los mapas se ven coherentes entre sí?)
+    assets\textures\madera_pbr\qa\tile_test.png   (¿hay costuras? ¿se nota la repetición?)
+  El script no puede juzgar eso. Tú sí.

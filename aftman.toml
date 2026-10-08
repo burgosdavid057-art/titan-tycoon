@@ -1,0 +1,4 @@
+# Herramientas del proyecto — instalar con: aftman install
+[tools]
+rojo = "rojo-rbx/rojo@7.4.4"
+luau-lsp = "JohnnyMorganz/luau-lsp@1.69.0"

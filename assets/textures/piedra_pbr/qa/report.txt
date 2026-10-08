@@ -1,0 +1,15 @@
+=== assets\textures\piedra_pbr ===
+  color         1024x1024 RGBA  color.png   [reescalado 2048x2048 -> 1024x1024]
+  normal        1024x1024 RGBA  normal.png   [reescalado 2048x2048 -> 1024x1024]
+  roughness     1024x1024 RGBA  roughness.png   [reescalado 2048x2048 -> 1024x1024]
+  ao            1024x1024 RGBA  ao.png   [reescalado 2048x2048 -> 1024x1024]
+  displacement  1024x1024 RGBA  displacement.png   [reescalado 2048x2048 -> 1024x1024]
+  tileado: horiz 1.10x  vert 1.32x  -> OK
+  contraste de luminancia: sigma=29.1
+
+  Sin problemas mecánicos.
+
+  AHORA ABRE ESTOS ARCHIVOS Y MÍRALOS:
+    assets\textures\piedra_pbr\qa\contact_sheet.png   (¿los mapas se ven coherentes entre sí?)
+    assets\textures\piedra_pbr\qa\tile_test.png   (¿hay costuras? ¿se nota la repetición?)
+  El script no puede juzgar eso. Tú sí.
